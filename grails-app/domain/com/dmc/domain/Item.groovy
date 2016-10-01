@@ -1,27 +1,35 @@
 package com.dmc.domain
+
+import com.dmc.valueobject.Money
+
+import java.time.LocalDateTime
+
 /**
  *
  * Menu Item model. It reflects an item of a restaurant menu.
  *
  */
-class Item extends Domain {
+class Item extends Entity {
 
     static final int MB = 1024 * 1024
     static final int MAX_PICTURE_SIZE = 100 * MB
 
     String name
     String description
-
-
-    BigDecimal price = BigDecimal.ZERO
+    /**
+     * Price of an item. His price is a Value Object from DDD perspective.
+     */
+    Money price
+    /**
+     * Item image. Rendering image value.
+     */
     byte[] image
-
     /**
      *
      *
      */
-    Date validStarting = new Date()
-    Date validEnding = new Date()
+    Date validStarting
+    Date validEnding
     Date availableAfter
     Date availableBefore
 
@@ -50,6 +58,8 @@ class Item extends Domain {
      * Ranking of an item could be from 1 up to 5
      */
     Ranking ranking = Ranking.ONE
+
+    static embedded = ['price']
 
     static constraints = {
         name nullable: false

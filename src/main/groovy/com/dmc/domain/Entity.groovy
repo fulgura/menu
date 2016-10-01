@@ -5,13 +5,15 @@ import groovy.transform.EqualsAndHashCode
 /**
  * Abstract class definition. Necessary for using UUID in all domain classes
  *
+ *  From DDD:
  *
+ *  'An object that is not defined by its attributes, but rather by a thread of continuity and its identity.'
  */
 @EqualsAndHashCode(includes = "id")
-abstract class Domain implements Serializable {
+abstract class Entity implements Serializable {
 
     /**
-     * Domain class indetificayion
+     * Entity class indetificayion
      */
     String id
 

@@ -15,7 +15,7 @@ class ItemSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test can sum 2 items"() {
         expect:"fix me"
             true == false
     }

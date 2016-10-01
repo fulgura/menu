@@ -5,7 +5,7 @@ package com.dmc.domain
  *
  *
  */
-class Menu extends Domain {
+class Menu extends Entity {
 
     /**
      * Menu description

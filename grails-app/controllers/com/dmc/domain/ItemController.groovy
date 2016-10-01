@@ -1,4 +1,4 @@
-package com.dmc
+package com.dmc.domain
 
 class ItemController {
 

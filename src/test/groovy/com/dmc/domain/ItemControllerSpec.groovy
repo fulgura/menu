@@ -1,13 +1,13 @@
-package com.dmc
+package com.dmc.domain
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(Item)
-class ItemSpec extends Specification {
+@TestFor(ItemController)
+class ItemControllerSpec extends Specification {
 
     def setup() {
     }

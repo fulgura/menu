@@ -1,5 +1,4 @@
-package com.dmc
-
+package com.dmc.domain
 /**
  *
  * Menu Item model. It reflects an item of a restaurant menu.
@@ -12,6 +11,8 @@ class Item extends Domain {
 
     String name
     String description
+
+
     BigDecimal price = BigDecimal.ZERO
     byte[] image
 

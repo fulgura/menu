@@ -2,8 +2,6 @@ package com.dmc.domain
 
 import com.dmc.valueobject.Money
 
-import java.time.LocalDateTime
-
 /**
  *
  * Menu Item model. It reflects an item of a restaurant menu.
@@ -28,10 +26,10 @@ class Item extends Entity {
      *
      *
      */
-    Date validStarting
-    Date validEnding
-    Date availableAfter
-    Date availableBefore
+//    Date validStarting
+//    Date validEnding
+//    Date availableAfter
+//    Date availableBefore
 
     enum Ranking {
 
@@ -59,17 +57,23 @@ class Item extends Entity {
      */
     Ranking ranking = Ranking.ONE
 
+    static belongsTo = [menu: Menu]
+
     static embedded = ['price']
 
+    /**
+     * Validate entity fields.
+     */
     static constraints = {
         name nullable: false
         description nullable: false
         price nullable: false
-        image(nullable: true, maxSize: MAX_PICTURE_SIZE)
-        validStarting nullable: false
-        validEnding nullable: false
-        availableAfter nullable: false
-        availableBefore nullable: false
+        image nullable: true, maxSize: MAX_PICTURE_SIZE
+//        validStarting nullable: false
+//        validEnding nullable: false
+//        availableAfter nullable: false
+//        availableBefore nullable: false
+        ranking nullable: false
     }
 
     String toString() {

@@ -9,6 +9,7 @@ import spock.lang.Specification
 @TestFor(Menu)
 class MenuSpec extends Specification {
 
+
     def setup() {
     }
 

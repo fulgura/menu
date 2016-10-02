@@ -1,5 +1,7 @@
 package com.dmc.domain
 
+import com.dmc.valueobject.Money
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -15,8 +17,20 @@ class ItemSpec extends Specification {
     def cleanup() {
     }
 
-    void "test can sum 2 items"() {
-        expect:"fix me"
-            true == false
+    void "test can make an Item using builder pattern"() {
+
+        given:
+        def item = new ItemBuilder().build {
+            name 'Milanesa Napo'
+            price Money.pesos(new BigDecimal(100))
+            ranking Item.Ranking.FOUR
+        }
+
+        when:
+        item.save(failOnError: true, flush: true)
+
+        then:
+        item.id
+
     }
 }

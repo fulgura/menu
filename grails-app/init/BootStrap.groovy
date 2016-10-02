@@ -1,4 +1,7 @@
+import com.dmc.domain.Item
+import com.dmc.domain.ItemBuilder
 import com.dmc.domain.Menu
+import com.dmc.valueobject.Money
 import grails.util.Environment
 
 class BootStrap {
@@ -9,8 +12,16 @@ class BootStrap {
 
             development {
 
-                new Menu(description: "Milanesa Napo").save(failOnError: true, flush: true)
+                def milanesaNapo = new ItemBuilder().build {
+                    name 'Milanesa Napo'
+                    description 'Milanesa Napolitana'
+                    price Money.pesos(new BigDecimal(100))
+                    ranking Item.Ranking.FOUR
+                }
 
+                def menu = new Menu(description: "Milanesa Napo")
+                menu.addToItems(milanesaNapo)
+                menu.save(failOnError: true)
             }
 
             production {
@@ -18,7 +29,8 @@ class BootStrap {
             }
 
             test {
-                
+                grails.project.fork = false
+
             }
 
 

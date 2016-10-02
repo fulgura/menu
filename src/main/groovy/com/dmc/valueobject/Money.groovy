@@ -11,10 +11,14 @@ class Money {
 
     static final Currency USD = Currency.getInstance("USD")
     static final Currency EUR = Currency.getInstance("EUR")
-    static final Currency PESOS = Currency.getInstance("ARP") // Argentinian pesos
+    static final Currency PESOS = Currency.getInstance("ARS") // Argentinian pesos
 
     BigDecimal amount = BigDecimal.ZERO
     Currency currency = USD
+
+    public Money() {
+
+    }
 
     static def Money euros(BigDecimal amount) {
         valueOf(amount, EUR)

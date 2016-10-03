@@ -42,7 +42,7 @@ class MenuAPIIntegrationTest extends Specification {
 
     void "test can request menu list"() {
         given:
-        def menu = new Menu(description: "Milanesa Napo").save(failOnError: true)
+        def menu = new Menu(description: "Milanesa Napo").save()
 
         when:
         def response = rest.get(path: "api/menus")
@@ -51,7 +51,7 @@ class MenuAPIIntegrationTest extends Specification {
         with(response) {
             status == HttpStatus.OK.value()
             contentType == MimeType.JSON.name
-            responseData == ([menu] as JSON)
+            data == ([menu] as JSON)
         }
     }
 

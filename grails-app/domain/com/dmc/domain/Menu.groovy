@@ -1,10 +1,14 @@
 package com.dmc.domain
+
+import groovy.transform.ToString
+
 /**
  *
  * Restaurant menu model. It reflects a menu with their items and submenu.
  *
  *
  */
+@ToString(includeNames = true, includeFields = true, excludes = "metaClass,class")
 class Menu extends Entity {
 
     /**

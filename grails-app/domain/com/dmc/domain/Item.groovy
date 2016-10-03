@@ -1,12 +1,14 @@
 package com.dmc.domain
 
 import com.dmc.valueobject.Money
+import groovy.transform.ToString
 
 /**
  *
  * Menu Item model. It reflects an item of a restaurant menu.
  *
  */
+@ToString(includeNames = true, includeFields = true, excludes = "metaClass,class")
 class Item extends Entity {
 
     static final int MB = 1024 * 1024

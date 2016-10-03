@@ -36,6 +36,7 @@ class ListMenuCommand {
     def execute() {
         Menu.list().collect { Menu menu ->
             [
+                    id         : menu.id,
                     description: menu.description,
                     enable     : menu.enabled,
                     dateCreated: menu.dateCreated,
@@ -47,6 +48,7 @@ class ListMenuCommand {
                     },
                     subMenus   : menu.subMenus.collect { Menu subMenu ->
                         [
+                                id         : subMenu.id,
                                 description: subMenu.description,
                                 enable     : subMenu.enabled,
                                 dateCreated: subMenu.dateCreated,
@@ -81,6 +83,7 @@ class ReadMenuCommand {
 
     def execute() {
         [
+                id         : menu.id,
                 description: menu.description,
                 enable     : menu.enabled,
                 items      : menu.items.groupBy({ Item item -> item.price }).collect {
@@ -91,6 +94,7 @@ class ReadMenuCommand {
                             ],
                             values: it.value.collect { Item item ->
                                 [
+                                        id         : item.id,
                                         name       : item.name,
                                         description: item.description,
                                         ranking    : item.ranking.name()
@@ -100,6 +104,7 @@ class ReadMenuCommand {
                 },
                 subMenus   : menu.subMenus.collect { Menu subMenu ->
                     [
+                            id         : subMenu.id,
                             description: subMenu.description,
                             enable     : subMenu.enabled,
                             dateCreated: subMenu.dateCreated,

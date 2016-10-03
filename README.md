@@ -1,4 +1,4 @@
 # menu
 Simple Grails 3 app
 
-![Example](./image.png =100x20)
+![Example](https://github.com/fulgura/menu/blob/master/image.png =100x20)

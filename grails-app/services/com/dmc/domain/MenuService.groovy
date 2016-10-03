@@ -28,9 +28,10 @@ class MenuService {
 
             Money total = Money.valueOf(new BigDecimal(0), menu.items.first().price.currency)
             menu.items.each { Item item ->
-                total.plus(item.price)
+                total = total.plus(item.price)
             }
 
+            total
         } else {
             Money.pesos(new BigDecimal(0))
         }

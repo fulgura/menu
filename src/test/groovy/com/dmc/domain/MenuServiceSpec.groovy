@@ -62,7 +62,8 @@ class MenuServiceSpec extends Specification {
         def total = service.totalPrice(menuCaldoGallego)
 
         then:
-        total == Money.pesos(new BigDecimal(300))
+        total.amount == new BigDecimal(300)
+        total.currency == Money.PESOS
     }
 
 }

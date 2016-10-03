@@ -34,7 +34,26 @@ class MenuAPIController extends APIBaseController {
 class ListMenuCommand {
 
     def execute() {
-        Menu.list()
+        Menu.list().collect { Menu menu ->
+            [
+                    description: menu.description,
+                    enable     : menu.enabled,
+                    dateCreated: menu.dateCreated,
+                    items      : menu.items.collect { Item item ->
+                        [
+                                id         : item.id,
+                                dateCreated: item.dateCreated
+                        ]
+                    },
+                    subMenus   : menu.subMenus.collect { Menu subMenu ->
+                        [
+                                description: subMenu.description,
+                                enable     : subMenu.enabled,
+                                dateCreated: subMenu.dateCreated,
+                        ]
+                    }
+            ]
+        }
     }
 }
 /**
@@ -70,10 +89,22 @@ class ReadMenuCommand {
                                     amount : it.key.amount,
                                     curency: it.key.currency
                             ],
-                            values: it.value.collect { Item item -> [name: item.name, description: item.description] }
+                            values: it.value.collect { Item item ->
+                                [
+                                        name       : item.name,
+                                        description: item.description,
+                                        ranking    : item.ranking.name()
+                                ]
+                            }
                     ]
                 },
-                subMenus   : menu.subMenus
+                subMenus   : menu.subMenus.collect { Menu subMenu ->
+                    [
+                            description: subMenu.description,
+                            enable     : subMenu.enabled,
+                            dateCreated: subMenu.dateCreated,
+                    ]
+                }
 
         ]
     }

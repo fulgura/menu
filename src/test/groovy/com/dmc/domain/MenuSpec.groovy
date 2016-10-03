@@ -37,7 +37,7 @@ class MenuSpec extends Specification {
         where: " fields are"
         description     || valid
         "Milanesa Napo" || true
-        "Caldo"         || false
+        "Caldo"         || true
         null            || false
         ""              || false
 

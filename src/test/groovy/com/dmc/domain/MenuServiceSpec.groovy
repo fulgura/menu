@@ -1,5 +1,6 @@
 package com.dmc.domain
 
+import com.dmc.valueobject.Money
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -39,8 +40,29 @@ class MenuServiceSpec extends Specification {
     }
 
     void "test can sum all item prices"() {
-        expect: "fix me"
-        true == false
+        given:
+        def menuCaldoGallego = new Menu(description: "Caldo Gallego")
+        menuCaldoGallego.addToItems(new ItemBuilder().build {
+            name 'Item 1'
+            description 'Description Item 1'
+            price Money.pesos(new BigDecimal(100))
+            ranking Item.Ranking.THREE
+        }.save(failOnError: true))
+        menuCaldoGallego.addToItems(new ItemBuilder().build {
+            name 'Item 2'
+            description 'Description Item 2'
+            price Money.pesos(new BigDecimal(200))
+            ranking Item.Ranking.FIVE
+        }.save(failOnError: true))
+
+        menuCaldoGallego.save(failOnError: true)
+
+
+        when:
+        def total = service.totalPrice(menuCaldoGallego)
+
+        then:
+        total == Money.pesos(new BigDecimal(300))
     }
 
 }

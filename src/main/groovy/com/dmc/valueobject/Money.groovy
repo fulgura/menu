@@ -66,7 +66,7 @@ class Money {
         return result
     }
 
-    BigDecimal plus(Money money) {
+    Money plus(Money money) {
         assert this.currency == money.currency, "Cannot plus different currencies"
         // TODO: use Rounded results
         valueOf(this.amount.add(money.amount), this.currency)

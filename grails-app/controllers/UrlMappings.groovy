@@ -9,9 +9,12 @@ class UrlMappings {
         }
 
         "/api/menus"(controller: 'menuAPI') {
-            action = [GET: "apiIndex"]
+            action = [GET: "list"]
         }
 
+        "/api/menus/$id"(controller: 'menuAPI') {
+            action = [GET: "show"]
+        }
         "/"(view: "/index")
         "500"(view: '/error')
         "404"(view: '/notFound')

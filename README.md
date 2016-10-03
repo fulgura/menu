@@ -123,23 +123,82 @@ La clase Item Builder permite la creación de Item usando el Builder Pattern a l
 
 ```
 
-La información va a ser consumida a través de servicios REST.
+1. La información va a ser consumida a través de servicios REST.
+
+2. Se debe poder listar los menús a consumir por el front-end.
 
 # 
 ![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.29.46%20AM.png)
 
 
+3. Se debe proveer una funcionalidad para que, dado un menú, se pueda devolver los ítems del mismo agrupados por precio. Tener en cuenta que en un futuro, también se pueden agrupar por ranking.
 
 
+# 
+![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.31.04%20AM.png)
+
+
+4. Se debe realizar una función que dado un menú, devuelva la suma de los precios de todos sus ítems (incluyendo submenús). Esta información no va a ser consumida por el front-end, es lógica pura de negocio.
+
+```groovy
+    /**
+     *
+     * Sum price items for a menu.
+     *
+     * @param menu
+     */
+    def totalPrice(Menu menu) {
+        if (menu.items) {
+
+            Money total = Money.valueOf(new BigDecimal(0), menu.items.first().price.currency)
+            menu.items.each { Item item ->
+                total = total.plus(item.price)
+            }
+
+            total
+        } else {
+            Money.pesos(new BigDecimal(0))
+        }
+    }
+
+```
+
+5. Se debe realizar una función que dado un menú, devuelva la cantidad de submenús que están activos. Esta información no va a ser consumida por el front-end, es lógica pura de negocio.
+
+```groovy
+
+    /**
+     *
+     * Find all sub menus for a menu
+     *
+     * @param menu
+     * @return
+     */
+    def activeSubMenus(Menu menu) {
+        menu.subMenus.findAll { it.enabled }
+    }
+
+
+```
+
+Para modelarlos trabajé con test sobre el servicio
 
 # 
 ![](https://github.com/fulgura/menu/blob/master/image.png)
 
 
+
+
+
+
+```groovy
+
+
+```
+
+
 # 
 ![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.30.19%20AM.png)
 
-# 
-![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.31.04%20AM.png)
 
 

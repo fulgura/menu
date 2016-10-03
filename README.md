@@ -182,20 +182,31 @@ La clase Item Builder permite la creación de Item usando el Builder Pattern a l
 ```
 
 Para modelarlos trabajé con test sobre el servicio
-
 # 
 ![](https://github.com/fulgura/menu/blob/master/image.png)
 
 
+- Si ahora se pide agregar una nueva lógica que dado un menú, se muestre en consola los nombres de todos los submenús, que cambios haría?
+
+Ningún cambio ? Solo agregaría en el log el detalle de menú consumidos.
 
 
+- Se requiere loguear el tiempo de ejecución de cada método, o de un conjunto de ellos.
 
+Para ello puedo poner un Interceptor o hacer un closure benchmark
 
 ```groovy
-
-
+    def benchmark = { def customMetric, def closure ->
+        def start = System.currentTimeMillis()
+        closure.call()
+        def now = System.currentTimeMillis()
+        def time = now - start
+        log.info("Time processing an ${customMetric}: ${time}")
+        time
+    }
 ```
 
+Nota2: La aplicación también cuenta con el scaffolding de las entidades Menu e Item
 
 # 
 ![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.30.19%20AM.png)

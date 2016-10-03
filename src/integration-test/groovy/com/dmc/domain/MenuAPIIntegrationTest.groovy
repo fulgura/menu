@@ -1,6 +1,5 @@
 package com.dmc.domain
 
-import grails.converters.JSON
 import grails.test.mixin.Mock
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
-
 
 /**
  * Integration test for REST API results
@@ -42,7 +40,7 @@ class MenuAPIIntegrationTest extends Specification {
 
     void "test can request menu list"() {
         given:
-        def menu = new Menu(description: "Milanesa Napo").save()
+        def menu = new Menu(description: "Milanesa Napo").save(failOnError: true, flush: true)
 
         when:
         def response = rest.get(path: "api/menus")
@@ -51,7 +49,7 @@ class MenuAPIIntegrationTest extends Specification {
         with(response) {
             status == HttpStatus.OK.value()
             contentType == MimeType.JSON.name
-            data == ([menu] as JSON)
+            data.size() == 1
         }
     }
 

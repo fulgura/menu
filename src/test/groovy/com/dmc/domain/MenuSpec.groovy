@@ -2,6 +2,7 @@ package com.dmc.domain
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -9,15 +10,36 @@ import spock.lang.Specification
 @TestFor(Menu)
 class MenuSpec extends Specification {
 
+    /**
+     * run before every feature method
+     */
+    def setup() {}
 
-    def setup() {
-    }
+    /**
+     * run after every feature method
+     */
+    def cleanup() {}
+    /**
+     * run before the first feature method
+     */
+    def setupSpec() {}
+    /**
+     *  run after the last feature method
+     */
+    def cleanupSpec() {}
 
-    def cleanup() {
-    }
+    @Unroll
+    void "test can create a valid Menu with description:'#description' "() {
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+        expect: "is a valid Menu"
+        new Menu(description: description).validate() == valid
+
+        where: " fields are"
+        description     || valid
+        "Milanesa Napo" || true
+        "Caldo"         || false
+        null            || false
+        ""              || false
+
     }
 }

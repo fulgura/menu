@@ -59,8 +59,6 @@ class Item extends Entity {
      */
     Ranking ranking = Ranking.ONE
 
-    static belongsTo = [menu: Menu]
-
     static embedded = ['price']
 
     /**

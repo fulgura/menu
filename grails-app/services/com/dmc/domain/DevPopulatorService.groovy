@@ -22,27 +22,57 @@ class DevPopulatorService implements Populator {
             description 'Milanesa Napolitana'
             price Money.pesos(new BigDecimal(100))
             ranking Item.Ranking.FOUR
-        })
+        }.save(failOnError: true))
         menu.save(failOnError: true)
 
-
         def menuCaldoGallego = new Menu(description: "Caldo Gallego")
+        def subMenu1 = new Menu(description: "SubMenu 1").save(failOnError: true)
+        menuCaldoGallego.addToSubMenus(subMenu1)
+
         menuCaldoGallego.addToItems(new ItemBuilder().build {
             name 'Item 1'
             description 'Description Item 1'
             price Money.pesos(new BigDecimal(100))
             ranking Item.Ranking.THREE
-        })
-        menuCaldoGallego.save(failOnError: true)
-
-        def menuCanelonAtun = new Menu(description: "Canelon de Atun")
+        }.save(failOnError: true))
         menuCaldoGallego.addToItems(new ItemBuilder().build {
             name 'Item 2'
             description 'Description Item 2'
             price Money.pesos(new BigDecimal(200))
             ranking Item.Ranking.THREE
-        })
+        }.save(failOnError: true))
+        menuCaldoGallego.addToItems(new ItemBuilder().build {
+            name 'Item 8'
+            description 'Description Item 8'
+            price Money.pesos(new BigDecimal(200))
+            ranking Item.Ranking.THREE
+        }.save(failOnError: true))
+        def subMenu2 = new Menu(description: "SubMenu 2").save(failOnError: true)
+        menuCaldoGallego.addToSubMenus(subMenu2)
         menuCaldoGallego.save(failOnError: true)
+
+        def menuCanelonAtun = new Menu(description: "Canelon de Atun")
+        menuCanelonAtun.addToItems(new ItemBuilder().build {
+            name 'Item 3'
+            description 'Description Item 3'
+            price Money.pesos(new BigDecimal(300))
+            ranking Item.Ranking.THREE
+        }.save(failOnError: true))
+        menuCanelonAtun.addToItems(new ItemBuilder().build {
+            name 'Item 4'
+            description 'Description Item 4'
+            price Money.pesos(new BigDecimal(300))
+            ranking Item.Ranking.THREE
+        }.save(failOnError: true))
+        menuCanelonAtun.addToItems(new ItemBuilder().build {
+            name 'Item 5'
+            description 'Description Item 5'
+            price Money.pesos(new BigDecimal(100))
+            ranking Item.Ranking.THREE
+        }.save(failOnError: true))
+        menuCanelonAtun.addToSubMenus(menuCaldoGallego)
+        menuCanelonAtun.save(failOnError: true)
+
 
     }
 }

@@ -47,6 +47,25 @@ class Money {
                 amount.equals(other.amount);
     }
 
+    boolean equals(otherMoney) {
+        if (this.is(otherMoney)) return true
+        if (getClass() != otherMoney.class) return false
+
+        Money money = (Money) otherMoney
+
+        if (amount != money.amount) return false
+        if (currency != money.currency) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (amount != null ? amount.hashCode() : 0)
+        result = 31 * result + (currency != null ? currency.hashCode() : 0)
+        return result
+    }
+
     BigDecimal plus(Money money) {
         assert this.currency == money.currency, "Cannot plus different currencies"
         // TODO: use Rounded results

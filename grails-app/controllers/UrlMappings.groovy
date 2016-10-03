@@ -13,7 +13,7 @@ class UrlMappings {
         }
 
         "/api/menus/$id"(controller: 'menuAPI') {
-            action = [GET: "show"]
+            action = [GET: "read"]
         }
         "/"(view: "/index")
         "500"(view: '/error')

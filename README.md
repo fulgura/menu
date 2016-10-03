@@ -1,6 +1,6 @@
 # EXAMEN TÉCNICO 
 
-1. Un menú cuenta con una lista de items (al menos 1), y una lista de submenús (en donde cada elemento de la lista es un menú, que puede estar vacía). Cada menú posee además una descripción y un flag que dice si este menú está activo o no.
+Un menú cuenta con una lista de items (al menos 1), y una lista de submenús (en donde cada elemento de la lista es un menú, que puede estar vacía). Cada menú posee además una descripción y un flag que dice si este menú está activo o no.
 
 Clases Menu e Item.
 
@@ -23,7 +23,7 @@ class Menu extends Entity {
 
 ```
 
-2. Un item de un menú cuenta con un nombre, una descripción, un precio con su respectiva moneda, una foto, los días que está disponible, fecha desde y hasta en el cual es válido, horario desde hasta en el cual aplica y un ranking de puntuación numérico que va desde el 1 al 5.
+Un item de un menú cuenta con un nombre, una descripción, un precio con su respectiva moneda, una foto, los días que está disponible, fecha desde y hasta en el cual es válido, horario desde hasta en el cual aplica y un ranking de puntuación numérico que va desde el 1 al 5.
 
 ```groovy
 class Item extends Entity {
@@ -106,13 +106,28 @@ Nota:
 
 No pude completar el trabajo de fechas. Me resta agregar la librería joda-time para poder usar DateTime y RangeTime en las entidades.
 
+Un restaurante puede ofrecer diferentes menús, por ejemplo, “Menú del día” o “Menú de verano”.
 
-3. Un restaurante puede ofrecer diferentes menús, por ejemplo, “Menú del día” o “Menú de verano”.
+La clase Item Builder permite la creación de Item usando el Builder Pattern a la manera de groovy usando closures.
 
 ```groovy
 
+        def menu = new Menu(description: "Milanesa Napo")
+        menu.addToItems(new ItemBuilder().build {
+            name 'Milanesa Napo'
+            description 'Milanesa Napolitana'
+            price Money.pesos(new BigDecimal(100))
+            ranking Item.Ranking.FOUR
+        }.save(failOnError: true))
+        menu.save(failOnError: true)
 
 ```
+
+La información va a ser consumida a través de servicios REST.
+
+# 
+![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.29.46%20AM.png)
+
 
 
 
@@ -120,8 +135,6 @@ No pude completar el trabajo de fechas. Me resta agregar la librería joda-time 
 # 
 ![](https://github.com/fulgura/menu/blob/master/image.png)
 
-# 
-![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.29.46%20AM.png)
 
 # 
 ![](https://github.com/fulgura/menu/blob/master/Screen%20Shot%202016-10-03%20at%2012.30.19%20AM.png)
